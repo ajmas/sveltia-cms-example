@@ -1,0 +1,18 @@
+{
+  "devDependencies": {
+    "local-web-server": "^5.4.0"
+  },
+  "dependencies": {
+    "@sveltia/cms": "^0.62.4"
+  },
+  "name": "sveltia-cms-example",
+  "version": "0.0.1",
+  "description": "Project demonstrating how to launch sveltia-cms",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ws",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT"
+}
