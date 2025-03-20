@@ -10,7 +10,7 @@
   "description": "Project demonstrating how to launch sveltia-cms",
   "main": "index.js",
   "scripts": {
-    "dev": "ws",
+    "dev": "ws -o",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

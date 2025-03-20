@@ -1,0 +1,113 @@
+# module:
+#   imports:
+#     # Import Decap CMS
+#     - path: github.com/hugolify/hugolify-decap-cms
+#   mounts:
+#     - source: admin
+#       target: static/admin
+
+backend:
+  name: 'github'
+  repo: 'owner/repo'
+  branch: 'main'
+
+i18n:
+  structure: multiple_folders
+  locales: [en, fr]
+
+slug:
+  encoding: ascii
+  clean_accents: true
+
+media_folder: "static/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "news" # Used in routes, e.g., /admin/collections/blog
+    label: "News" # Used in the UI
+    folder: "_data/news" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    i18n: true
+    fields: # The fields for each document, usually in front matter
+      - { label: "Layout", name: "layout", widget: "hidden", default: "news" }
+      - { label: "Title", name: "title", widget: "string", i18n: true }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Featured Image", name: "thumbnail", widget: "image" }
+      - { label: "Body", name: "body", widget: "markdown", i18n: true }
+  - name: "pages"
+    label: "Pages"
+    folder: "_data/pages"
+    create: true
+    # slug: '{{uuid_short}}'
+    slug: "{{title | localize}}"
+    fields:
+      - { label: "Layout", name: "layout", widget: "hidden", default: "page" }
+      - { label: "Title", name: "title", widget: "string", i18n: true  }
+      - { label: "Subtitle", name: "subtitle", widget: "string", i18n: true  }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Featured Image", name: "thumbnail", widget: "image" }
+      - { label: "Body", name: "body", widget: "markdown", i18n: true  }
+  - name: "guests"
+    label: "Guests"
+    folder: "_data/guests"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Layout", name: "layout", widget: "hidden", default: "guest" }
+      - { label: "Title", name: "title", widget: "string", i18n: true  }
+      - { label: "Subtitle", name: "subtitle", widget: "string", i18n: true  }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Featured Image", name: "thumbnail", widget: "image" }
+      - { label: "Body", name: "body", widget: "markdown", i18n: true  }
+  - name: "events"
+    label: "Events"
+    folder: "_data/events"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Layout", name: "layout", widget: "hidden", default: "guest" }
+      - { label: "Title", name: "title", widget: "string", i18n: true  }
+      - { label: "Featured", name: "featured", widget: "boolean", }
+      - { label: "Guest Type", name: "guestType", widget: "string", i18n: true  }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Featured Image", name: "thumbnail", widget: "image" }
+      - { label: "Body", name: "body", widget: "markdown", i18n: true  }
+  - name: "data"
+    label: "Data Files"
+    files:
+      - name: sponsors
+        label: "Sponsor List"
+        file: "_data/sponsors.yml"
+        fields:
+          - name: sponsors
+            label: Sponsors
+            label_singular: Sponsor
+            widget: list
+            roote: true
+            media_folder: /static/images/sponsors # make sure to append a slash
+            public_folder: /images/sponsors
+            fields: # The fields for each document, usually in front matter
+              - { label: "Layout", name: "layout", widget: "hidden", default: "sponsor" }
+              - { label: "Name", name: "name", widget: "string"  }
+              - { label: "Website", name: "website", widget: "string" }
+              - { label: "Logo", name: "logo", widget: "image" }
+      - name: merchandise
+        label: "Merchandise List"
+        file: "_data/merchandise.yml"
+        fields:
+          - name: "Merchandise"
+            label: Product Items
+            label_singular: "Product Item"
+            widget: list
+            roote: true
+            i18n: true
+            media_folder: /static/images/products # make sure to append a slash
+            public_folder: /images/products
+            fields: # The fields for each document, usually in front matter
+              - { label: "Layout", name: "layout", widget: "hidden", default: "merchandise" }
+              - { label: "Name (English)", name: "name_en", widget: "string"}
+              - { label: "Name (French)", name: "name_fr", widget: "string" }
+              - { label: "Description (English)", name: "description_en", widget: "markdown" }
+              - { label: "Description (French)", name: "description_fr", widget: "markdown"  }
+              - { label: "Image", name: "image", widget: "image" }
