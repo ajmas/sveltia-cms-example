@@ -1,7 +1,12 @@
 # Sveltia CMS Example
 
-Project to demonstrate how to launch Sveltia CMS. Currently in an
-alpha state
+Project to demonstrate how to launch Sveltia CMS.
+
+I am developing this as a learning point for myself, but thought I'd
+share what I have, for anyone else jumping into this or wanting to
+suggest improvements.
+
+Treat this as a work in progress.
 
 ```
 npm install
@@ -10,14 +15,7 @@ npm run dev
 
 Connect to http://127.0.0.1:8000
 
-## Git-Gateway
+## Manual vs Automatic
 
-The example leverages the [netlify/git-gateway](https://github.com/netlify/git-gateway) project
-for the backend. Instructions on getting a basic installing up and running, assuming
-are in the git-gateway project folder:
-
-  - Install 'go'
-    - macOS with Homebrew: `brew install go`
-  - Install dependencies `go install`
-  - Set up your environment variables, using `example.env` as reference
-  - Launch the server: `go run main.go -c example.env`
+ - `index.html` launches using the config.yml
+ - `index-manual.html` launches using the config in src/main.js
